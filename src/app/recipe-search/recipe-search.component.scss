@@ -6,16 +6,35 @@
   .search-criteria-container {
     display: block;
     .search-criteria {
-      min-width: 300px;
       padding-bottom: 20px;
-      mat-card-title, mat-card-content, mat-card-actions {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+    }
+    .results-header {
+      text-align: center;
+      margin: 20px;
     }
     .results-container {
-
+      mat-card {
+        margin: 20px 0;
+        mat-card-footer {
+          text-align: center;
+          margin: 2px 0;
+        }
+      }
     }
+    .load-more-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+mat-card {
+  width: 300px;
+  mat-card-title, mat-card-content, mat-card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

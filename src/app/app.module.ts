@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
 import {
   MatButtonModule,
   MatCardModule,
@@ -21,7 +20,6 @@ import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    SidenavComponent,
     RecipeSearchComponent
   ],
   imports: [
