@@ -1,3 +1,7 @@
-<app-sidenav>
-  <router-outlet></router-outlet>
-</app-sidenav>
+<mat-toolbar color="primary" class="title-toolbar">
+  <div class="title-container" [routerLink]="'/home'">
+    Gluten-Free Meal Suggester
+  </div>
+</mat-toolbar>
+<router-outlet></router-outlet>
+

@@ -11,20 +11,30 @@
         </div>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="searchForRecipes(searchInput.value)" class="search-button">Search</button>
+        <button mat-raised-button color="primary" (click)="searchForRecipes(searchInput.value)" class="search-button">
+          Search
+        </button>
       </mat-card-actions>
     </mat-card>
     <ng-container *ngIf="searchResults$ | async as results">
-      <span class="results-header">Results</span>
+      <div class="results-header">Total Results: {{results.length}}</div>
       <div class="results-container">
-        <div >
-          <mat-card>
-            <mat-card-title>{{results[0].title}}</mat-card-title>
+        <div *ngFor="let result of results; let i = index">
+          <mat-card *ngIf="i < resultsShown">
+            <mat-card-title>{{result.title}}</mat-card-title>
             <mat-card-content>
-              <img [src]="buildImageUrl(results[0].id)"/>
+              <img [src]="buildImageUrl(result.id)"/>
             </mat-card-content>
+            <mat-card-footer>
+              {{result.readyInMinutes}} minutes
+            </mat-card-footer>
           </mat-card>
         </div>
+      </div>
+      <div class="load-more-container">
+        <button mat-raised-button color="primary" (click)="loadMore()" [disabled]="!canLoadMore(results.length)">
+          Load More
+        </button>
       </div>
     </ng-container>
   </div>
