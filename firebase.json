@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "meal-suggester",
+      "public": "dist/meal-suggester",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

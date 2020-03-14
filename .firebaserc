@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "meal-suggester-app": {
+      "hosting": {
+        "meal-suggester": [
+          "meal-suggester-app"
+        ]
+      }
+    }
+  }
+}
