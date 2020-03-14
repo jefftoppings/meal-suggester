@@ -15,6 +15,9 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,8 @@ import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,

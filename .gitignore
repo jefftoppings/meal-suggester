@@ -46,3 +46,4 @@ testem.log
 Thumbs.db
 /src/app/spoonacular.ts
 /src/app/sample-search.ts
+/src/app/firebase.ts
