@@ -1,0 +1,21 @@
+.recipe-search-container {
+  margin-top: 40px;
+  min-height: 800px;
+  display: flex;
+  justify-content: center;
+  .search-criteria-container {
+    display: block;
+    .search-criteria {
+      min-width: 300px;
+      padding-bottom: 20px;
+      mat-card-title, mat-card-content, mat-card-actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .results-container {
+
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<div class="recipe-search-container">
+  <div class="search-criteria-container">
+    <mat-card class="search-criteria">
+      <mat-card-title>Search for Recipes</mat-card-title>
+      <mat-card-content>
+        <div>
+          <mat-form-field>
+            <mat-label></mat-label>
+            <input matInput #searchInput>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="searchForRecipes(searchInput.value)" class="search-button">Search</button>
+      </mat-card-actions>
+    </mat-card>
+    <ng-container *ngIf="searchResults$ | async as results">
+      <span class="results-header">Results</span>
+      <div class="results-container">
+        <div >
+          <mat-card>
+            <mat-card-title>{{results[0].title}}</mat-card-title>
+            <mat-card-content>
+              <img [src]="buildImageUrl(results[0].id)"/>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
