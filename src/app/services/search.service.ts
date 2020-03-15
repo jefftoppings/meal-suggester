@@ -4,27 +4,7 @@ import {AngularFireDatabase} from '@angular/fire/database';
 import {map, tap} from 'rxjs/operators';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {SPOONACULAR_API_KEY} from '../spoonacular';
-
-export interface SearchResponse {
-  results: SearchResult[];
-  baseUri: string;
-  offset: number;
-  number: number;
-  totalResults: number;
-  processingTimeMs: number;
-  expires: number;
-}
-
-export interface SearchResult {
-  id: number;
-  title: string;
-  readyInMinutes: number;
-  servings: number;
-  image: string;
-  imageUrls: string[];
-}
-
-const INTOLERANCES = 'gluten';
+import {INTOLERANCES, SearchResponse, SearchResult} from '../constants';
 
 @Injectable()
 export class SearchService {

@@ -1,7 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {SearchResult, SearchService} from '../services/search.service';
+import {SearchService} from '../services/search.service';
 import {Observable, of, Subscription} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
+import {SearchResult} from '../constants';
 
 @Component({
   selector: 'app-recipe-search',
