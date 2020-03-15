@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {SAMPLE_SEARCH_RESULTS} from '../sample-search';
+import {AngularFireDatabase} from '@angular/fire/database';
+import {map, tap} from 'rxjs/operators';
 
 export interface SearchResponse {
   results: SearchResult[];
@@ -23,17 +25,20 @@ export interface SearchResult {
 
 @Injectable()
 export class SearchService {
-  searchResults$$: BehaviorSubject<SearchResult[]> = new BehaviorSubject<SearchResult[]>(null);
 
-  constructor() {
+  constructor(private db: AngularFireDatabase) {
   }
 
-  get searchResults$(): Observable<SearchResult[]> {
-    return this.searchResults$$.asObservable();
-  }
-
-  search(value: string) {
-    // TODO: make actual API calls when ready
-    this.searchResults$$.next(SAMPLE_SEARCH_RESULTS.results);
+  search(value: string): Observable<SearchResult[]> {
+    return this.db.list(`/search/`).valueChanges().pipe(
+      map(result => {
+        if (result[0][value]) {
+          return result[0][value].results;
+        } else {
+          // TODO: make actual API call
+          return null;
+        }
+      })
+    );
   }
 }

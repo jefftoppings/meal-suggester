@@ -18,12 +18,10 @@ export class RecipeSearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.searchResults$ = this.searchService.searchResults$;
-    this.subscriptions.push(this.searchResults$.subscribe(console.log));
   }
 
   searchForRecipes(value: string) {
-    this.searchService.search(value);
+    this.searchResults$ = this.searchService.search(value);
   }
 
   ngOnDestroy(): void {
