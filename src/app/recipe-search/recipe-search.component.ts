@@ -23,15 +23,7 @@ export class RecipeSearchComponent implements OnInit, OnDestroy {
   }
 
   searchForRecipes(value: string) {
-    this.searchResults$ = this.searchService.searchDb(value).pipe(
-      switchMap(results => {
-        if (results) {
-          return of(results);
-        } else {
-          return this.searchService.searchApi(value);
-        }
-      })
-    );
+    this.searchResults$ = this.searchService.search(value);
   }
 
   ngOnDestroy(): void {

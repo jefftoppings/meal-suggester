@@ -1,0 +1,18 @@
+.recipe-container {
+  margin-top: 40px;
+  min-height: 800px;
+  display: flex;
+  justify-content: center;
+  .recipe-card-container {
+    display: block;
+  }
+}
+
+mat-card {
+  width: 300px;
+  mat-card-title, mat-card-content, mat-card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

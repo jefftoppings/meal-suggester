@@ -1,0 +1,7 @@
+<div class="recipe-container">
+  <div class="recipe-card-container">
+    <mat-card *ngIf="recipe$ | async as recipe">
+      <mat-card-title>{{recipe.title}}</mat-card-title>
+    </mat-card>
+  </div>
+</div>

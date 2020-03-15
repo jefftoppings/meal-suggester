@@ -19,12 +19,14 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../environments/environment';
 import {HttpClientModule} from '@angular/common/http';
+import { RecipeComponent } from './recipe/recipe.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    RecipeSearchComponent
+    RecipeSearchComponent,
+    RecipeComponent
   ],
   imports: [
     BrowserModule,

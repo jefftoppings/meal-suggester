@@ -11,7 +11,7 @@
         </div>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="searchForRecipes(searchInput.value)" class="search-button">
+        <button mat-raised-button color="primary" (click)="searchForRecipes(searchInput.value)" class="search-button" [disabled]="!searchInput.value">
           Search
         </button>
       </mat-card-actions>
@@ -23,7 +23,7 @@
           <mat-card *ngIf="i < resultsShown">
             <mat-card-title>{{result.title}}</mat-card-title>
             <mat-card-content>
-              <img [src]="buildImageUrl(result.id)"/>
+              <img [src]="buildImageUrl(result.id)" [routerLink]="'/recipe/' + result.id"/>
             </mat-card-content>
             <mat-card-footer>
               {{result.readyInMinutes}} minutes
