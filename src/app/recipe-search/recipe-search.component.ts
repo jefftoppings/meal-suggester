@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SearchResult, SearchService} from '../services/search.service';
-import {Observable, Subscription} from 'rxjs';
+import {Observable, of, Subscription} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-recipe-search',
@@ -21,7 +22,15 @@ export class RecipeSearchComponent implements OnInit, OnDestroy {
   }
 
   searchForRecipes(value: string) {
-    this.searchResults$ = this.searchService.search(value);
+    this.searchResults$ = this.searchService.searchDb(value).pipe(
+      switchMap(results => {
+        if (results) {
+          return of(results);
+        } else {
+          return this.searchService.searchApi(value);
+        }
+      })
+    );
   }
 
   ngOnDestroy(): void {

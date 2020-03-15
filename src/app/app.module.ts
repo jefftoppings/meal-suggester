@@ -18,6 +18,7 @@ import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../environments/environment';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {environment} from '../environments/environment';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    HttpClientModule,
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
