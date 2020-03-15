@@ -26,6 +26,7 @@ export class GetService {
     return this.getDb(id).pipe(
       switchMap(recipe => {
         if (recipe) {
+          console.log(recipe);
           return of(recipe);
         }
         return this.getApi(id);

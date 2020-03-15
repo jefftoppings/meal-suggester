@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {BehaviorSubject, Observable, Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {GetService} from '../services/get.service';
 import {GetResponse} from '../constants';
@@ -31,7 +31,12 @@ export class RecipeComponent implements OnInit, OnDestroy {
     );
   }
 
+  buildImageUrl(recipe: GetResponse) {
+    return 'https://spoonacular.com/recipeImages/' + recipe.id.toString() + '-312x231.jpg';
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
+
 }

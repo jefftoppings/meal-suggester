@@ -2,6 +2,35 @@
   <div class="recipe-card-container">
     <mat-card *ngIf="recipe$ | async as recipe">
       <mat-card-title>{{recipe.title}}</mat-card-title>
+      <mat-card-content>
+        <div class="recipe-card-content-container">
+          <div class="image-container">
+            <img [src]="buildImageUrl(recipe)"/>
+          </div>
+          <div class="image-caption">
+            <a [href]="recipe.sourceUrl" target="_blank">View on Source</a>
+          </div>
+          <div class="details-section">
+            <div class="section-div"><span class="section-title">Prep:</span> {{recipe.preparationMinutes}} minutes
+            </div>
+            <div class="section-div"><span class="section-title">Cook:</span> {{recipe.cookingMinutes}} minutes</div>
+            <div class="section-div"><span class="section-title">Total:</span> {{recipe.readyInMinutes}} minutes</div>
+            <div class="section-div"><span class="section-title">Servings:</span> {{recipe.servings}}</div>
+          </div>
+          <div class="ingredients-title">Ingredients</div>
+          <div class="ingredients">
+            <div *ngFor="let ingredient of recipe.extendedIngredients">
+              {{ingredient.amount}} {{ingredient.measures.us.unitLong}} {{ingredient.name}}
+            </div>
+          </div>
+          <div class="details-section">
+            <div class="instructions-title">Instructions</div>
+            <div *ngFor="let instruction of recipe.analyzedInstructions[0].steps" class="instruction">
+              {{instruction.number}}. {{instruction.step}}
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
     </mat-card>
   </div>
 </div>

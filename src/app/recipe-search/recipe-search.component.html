@@ -23,7 +23,7 @@
           <mat-card *ngIf="i < resultsShown">
             <mat-card-title>{{result.title}}</mat-card-title>
             <mat-card-content>
-              <img [src]="buildImageUrl(result.id)" [routerLink]="'/recipe/' + result.id"/>
+              <img [src]="buildImageUrl(result.id)" [routerLink]="'/recipe/' + result.id" class="results-image"/>
             </mat-card-content>
             <mat-card-footer>
               {{result.readyInMinutes}} minutes
