@@ -13,6 +13,7 @@ import {GetResponse} from '../constants';
 })
 export class RecipeComponent implements OnInit, OnDestroy {
   recipe$: Observable<GetResponse>;
+  units = 'us';
 
   private subscriptions: Subscription[] = [];
 
@@ -35,8 +36,11 @@ export class RecipeComponent implements OnInit, OnDestroy {
     return 'https://spoonacular.com/recipeImages/' + recipe.id.toString() + '-312x231.jpg';
   }
 
+  unitChanged(value: string) {
+    this.units = value;
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
-
 }

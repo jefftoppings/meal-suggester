@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import {
-  MatButtonModule,
+  MatButtonModule, MatButtonToggleModule,
   MatCardModule,
   MatIconModule,
   MatInputModule,
@@ -41,7 +41,8 @@ import { RecipeComponent } from './recipe/recipe.component';
     MatListModule,
     MatButtonModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
