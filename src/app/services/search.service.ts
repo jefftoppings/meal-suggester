@@ -1,39 +1,52 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {SAMPLE_SEARCH_RESULTS} from '../sample-search';
-
-export interface SearchResponse {
-  results: SearchResult[];
-  baseUri: string;
-  offset: number;
-  number: number;
-  totalResults: number;
-  processingTimeMs: number;
-  expires: number;
-}
-
-export interface SearchResult {
-  id: number;
-  title: string;
-  readyInMinutes: number;
-  servings: number;
-  image: string;
-  imageUrls: string[];
-}
+import {Observable, of} from 'rxjs';
+import {AngularFireDatabase} from '@angular/fire/database';
+import {map, switchMap, tap} from 'rxjs/operators';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {SPOONACULAR_API_KEY} from '../spoonacular';
+import {INTOLERANCES, SearchResponse, SearchResult} from '../constants';
 
 @Injectable()
 export class SearchService {
-  searchResults$$: BehaviorSubject<SearchResult[]> = new BehaviorSubject<SearchResult[]>(null);
 
-  constructor() {
+  constructor(private db: AngularFireDatabase, private http: HttpClient) {
   }
 
-  get searchResults$(): Observable<SearchResult[]> {
-    return this.searchResults$$.asObservable();
+  private searchDb(value: string): Observable<SearchResult[]> {
+    value = value.toLowerCase();
+    return this.db.list(`/search/`).valueChanges().pipe(
+      map(result => {
+        if (result[0][value]) {
+          return result[0][value].results;
+        }
+        return null;
+      })
+    );
   }
 
-  search(value: string) {
-    // TODO: make actual API calls when ready
-    this.searchResults$$.next(SAMPLE_SEARCH_RESULTS.results);
+  private searchApi(value: string): Observable<SearchResult[]> {
+    value = value.toLowerCase();
+    const url = 'https://api.spoonacular.com/recipes/search';
+    const params: HttpParams = new HttpParams()
+      .set('query', value)
+      .set('intolerances', INTOLERANCES)
+      .set('number', '100')
+      .set('instructionsRequired', 'true')
+      .set('apiKey', SPOONACULAR_API_KEY);
+    return this.http.get<SearchResponse>(url, {params}).pipe(
+      tap(result => this.db.list(`/search/search/`).set(value, result)),
+      map(result => result.results));
+  }
+
+  search(value: string): Observable<SearchResult[]> {
+    return this.searchDb(value).pipe(
+      switchMap(results => {
+        if (results) {
+          return of(results);
+        } else {
+          return this.searchApi(value);
+        }
+      })
+    );
   }
 }
