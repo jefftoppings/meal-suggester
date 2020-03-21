@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SearchService} from '../services/search.service';
-import {Observable, of, Subscription} from 'rxjs';
-import {switchMap} from 'rxjs/operators';
+import {Observable, Subscription} from 'rxjs';
 import {SearchResult} from '../constants';
 
 @Component({
@@ -13,6 +12,7 @@ import {SearchResult} from '../constants';
 export class RecipeSearchComponent implements OnInit, OnDestroy {
   searchResults$: Observable<SearchResult[]>;
   resultsShown = 10;
+  initialSearchValue: string;
 
   private subscriptions: Subscription[] = [];
 
@@ -20,10 +20,15 @@ export class RecipeSearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.initialSearchValue = localStorage.getItem('lastSearch');
+    if (this.initialSearchValue) {
+      this.searchForRecipes(this.initialSearchValue);
+    }
   }
 
   searchForRecipes(value: string) {
     this.searchResults$ = this.searchService.search(value);
+    localStorage.setItem('lastSearch', value);
   }
 
   ngOnDestroy(): void {
