@@ -20,13 +20,15 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../environments/environment';
 import {HttpClientModule} from '@angular/common/http';
 import { RecipeComponent } from './recipe/recipe.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     RecipeSearchComponent,
-    RecipeComponent
+    RecipeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
