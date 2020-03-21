@@ -1,13 +1,15 @@
-<h1 class="home-title">Welcome {{user}}!</h1>
-<div class="home-container">
-  <mat-card>
-    <mat-card-title>What would you like to do?</mat-card-title>
-    <mat-card-content>
-      <mat-list>
-        <mat-list-item>
-          <a [routerLink]="'/search'">Search for New Recipes</a>
-        </mat-list-item>
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
-</div>
+<ng-container *ngIf="user$ | async as user">
+  <h1 class="home-title">Welcome {{user.displayName}}!</h1>
+  <div class="home-container">
+    <mat-card>
+      <mat-card-title>What would you like to do?</mat-card-title>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>
+            <a [routerLink]="'/search'">Search for New Recipes</a>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-container>
