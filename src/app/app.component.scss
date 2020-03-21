@@ -5,39 +5,6 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    a {
-      color: white;
-    }
   }
 }
 
-.sign-out-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  .sign-out-button-container {
-    width: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 40px;
-  }
-}
-
-.login-container {
-  margin: 40px 0;
-  display: flex;
-  justify-content: center;
-  button {
-    margin: 20px 0;
-  }
-}
-
-mat-card {
-  width: 300px;
-  mat-card-title, mat-card-content, mat-card-actions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
