@@ -1,23 +1,7 @@
 <mat-toolbar color="primary" class="title-toolbar">
-  <div class="title-container">
-    <a [routerLink]="'/home'">Gluten-Free Meal Suggester App</a>
+  <div class="title-container" [routerLink]="'/home'">
+    Gluten-Free Meal Suggester
   </div>
 </mat-toolbar>
-<ng-container *ngIf="user$ | async; else login">
-  <router-outlet></router-outlet>
-  <div class="sign-out-container">
-    <div class="sign-out-button-container">
-      <button mat-raised-button color="primary" (click)="signOut()">Sign Out</button>
-    </div>
-  </div>
-</ng-container>
-<ng-template #login>
-  <div class="login-container">
-    <mat-card>
-      <mat-card-title>Login</mat-card-title>
-      <mat-card-content>
-        <button mat-raised-button color="primary" (click)="loginWithGoogle()">Login With Google</button>
-      </mat-card-content>
-    </mat-card>
-  </div>
-</ng-template>
+<router-outlet></router-outlet>
+
