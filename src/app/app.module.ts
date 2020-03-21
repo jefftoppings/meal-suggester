@@ -21,6 +21,8 @@ import {environment} from '../environments/environment';
 import {HttpClientModule} from '@angular/common/http';
 import { RecipeComponent } from './recipe/recipe.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HomeComponent,
     RecipeSearchComponent,
     RecipeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatInputModule,
     MatButtonToggleModule
   ],
-  providers: [],
+  providers: [AngularFireAuth, AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
